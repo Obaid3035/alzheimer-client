@@ -1,0 +1,17 @@
+.navbar-brand{
+  img{
+    max-width: 70px;
+    object-fit: contain;
+  }
+}
+
+.navbar-nav{
+  .nav-link {
+    font-size: 13px;
+    margin-right: 20px;
+    color: #000 !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+

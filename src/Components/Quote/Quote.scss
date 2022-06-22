@@ -1,0 +1,19 @@
+.quote_main{
+  background-image: url('../../Assets/Quote_banner.jpg');
+  height: 300px;
+  max-height: 300px;
+  width: 100%;
+  max-width: 100%;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+
+  h4{
+    margin-top: 15px;
+    text-align: center;
+    font-size: 22px;
+  }
+}

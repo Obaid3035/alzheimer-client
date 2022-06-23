@@ -17,8 +17,8 @@ const Testimonials = () => {
         slidesToScroll: 1
     };
     return (
-        <Container>
-            <div className={'testimonials_main'}>
+        // <Container>
+            <Container className={'testimonials_main'}>
                 <h1>Our Customers Says</h1>
                 <Slider {...settings}>
                     <div className={'customer_reviews'}>
@@ -48,8 +48,8 @@ const Testimonials = () => {
                         <h6>John Linda</h6>
                     </div>
                 </Slider>
-            </div>
-        </Container>
+            </Container>
+        // </Container>
     );
 };
 

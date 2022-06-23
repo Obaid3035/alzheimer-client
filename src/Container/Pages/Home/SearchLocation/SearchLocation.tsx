@@ -10,17 +10,17 @@ const SearchLocation = () => {
         <div className={'search_location'}>
             <Form>
                 <Row>
-                    <Col md={9}>
+                    <Col md={8}>
                         <Input onSubmit={() => console.log('hello')}>
                             <Form.Control type="text" placeholder='Enter your Location to Find Lawyer' />
                         </Input>
                     </Col>
-                    <Col md={2}>
-                        <Button>
+                    <Col md={3}>
+                        <Button type="submit" onClick={() => console.log('hello')}>
                             Search
                         </Button>
                     </Col>
-                    <Col md={1}>
+                    <Col md={1} className={'location_img'}>
                         <img src={LocationIcon} alt={'location-icon'}/>
                     </Col>
                 </Row>

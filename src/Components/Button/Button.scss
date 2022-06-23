@@ -14,3 +14,10 @@
     box-shadow: none !important;
   }
 }
+
+@media (max-width: 768px){
+  .btn_style{
+    width: 100% !important;
+    margin-top: 10px;
+  }
+}

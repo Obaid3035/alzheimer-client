@@ -5,37 +5,21 @@
     text-transform: uppercase;
     font-weight: 600;
     position: relative;
-    //padding-left: 45px;
     font-size: 55px;
-
-    //&::before{
-    //  content: "";
-    //  width: 30px;
-    //  height: 3px;
-    //  background-color: #21556c;
-    //  position: absolute;
-    //  top: 25px;
-    //  left: 5px;
-    //}
   }
 
   p{
-    //padding-left: 45px;
     font-size: 18px;
-
     span{
       color: #21556c;
       font-weight: 500;
     }
   }
-
-  //.lawyer_join{
-  //  padding-left: 45px;
-  //}
 }
 .home_img{
 
   img{
+    width: 100%;
     max-width: 516px;
     object-fit: contain;
     height: auto;
@@ -45,6 +29,7 @@
   padding-left: 0 !important;
 
   img{
+    width: 100%;
     max-width: 700px;
     max-height: 590px;
     object-fit: contain;
@@ -84,7 +69,6 @@
     }
   }
 }
-
 .legal_professional {
   background-image: url('../../../Assets/Home_section3.png');
   background-size: cover;
@@ -110,6 +94,54 @@
     }
     p{
       font-weight: 100;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .get_touch{
+    margin: 20px 0;
+
+    h1{
+      font-size: 30px;
+    }
+    p{
+      font-size: 15px;
+    }
+  }
+  .home_img{
+    margin: 20px 0;
+  }
+  .homeSection2_text{
+    padding: 20px;
+    h5{
+      font-size: 20px;
+    }
+    h4 {
+      font-size: 20px;
+
+      &::before {
+        top: 11px;
+      }
+    }
+    p{
+      font-size: 13px;
+    }
+  }
+  .legal_professional{
+    height: auto;
+    .legal_professional_desc{
+      height: auto;
+      padding: 20px;
+      h1{
+        font-size: 30px;
+      }
+      h6{
+        font-size: 20px;
+      }
+      p{
+        font-size: 13px;
+      }
     }
   }
 }

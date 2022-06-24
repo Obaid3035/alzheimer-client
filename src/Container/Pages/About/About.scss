@@ -1,3 +1,5 @@
+@import '../../../color';
+
 .about_section1{
   display: flex;
   justify-content: center;
@@ -8,7 +10,7 @@
     font-size: 50px;
     text-transform: uppercase;
     font-weight: bold;
-    color: #23546b;
+    color: $darkBlue;
     letter-spacing: 1px;
   }
 }
@@ -35,7 +37,7 @@
       font-size: 20px;
       text-transform: uppercase;
       font-weight: 700;
-      color: #14232b;
+      color: $darkBlue;
     }
 
     ul{
@@ -45,7 +47,7 @@
         font-weight: 300;
 
         span{
-          color: #1a9abb;
+          color: $button;
           font-weight: 600;
         }
       }
@@ -66,13 +68,13 @@
   }
 
   .about_boxSection{
-    box-shadow: rgb(9 157 195 / 25%) 0 6px 12px 0;
+    box-shadow: $boxShadow;
     height: 110px;
 
     p{
       padding: 20px 25px;
       text-align: center;
-      color: #1a9abb;
+      color: $button;
       font-weight: 600;
       margin-bottom: 0;
       display: flex;
@@ -86,12 +88,12 @@
   h4{
     font-weight: bold;
     span{
-      color: #1a9abb;
+      color: $button;
     }
   }
   .alz_nexus_section{
-    box-shadow: rgb(9 157 195 / 16%) 0 6px 12px 0;
-    border-top: 10px solid #1a9abb;
+    box-shadow: $boxShadow;
+    border-top: 10px solid $button;
     border-radius: 7px;
     padding: 25px;
     width: 100%;
@@ -110,23 +112,23 @@
   }
 
     h5{
-      color: #1a9abb;
+      color: $button;
       font-weight: bold;
     }
     p{
-      color: #23546b;
+      color: $darkBlue;
       font-size: 14px;
       font-weight: 500;
     }
     ul{
       li{
-        color: #464646;
+        color: $paragraph;
         font-weight: 300;
         margin-bottom: 10px;
         font-size: 14px;
 
         &::marker{
-          color: #1a9abb;
+          color: $button;
         }
       }
     }
@@ -148,7 +150,7 @@
     ul{
       li{
         font-size: 15px;
-        color: #1a9abb;
+        color: $button;
         font-weight: 700;
         margin-bottom: 20px;
       }

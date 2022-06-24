@@ -5,8 +5,18 @@ import LawyerRegister2 from "../../../../Assets/lawyer-register2.jpg";
 import Register from "../../../Auth/Register/Register";
 import Quote from "../../../../Components/Quote/Quote";
 import './Register.scss';
+import Login from "../../../Auth/Login/Login";
+import {useLocation} from "react-router-dom";
 
 const LawyerRegister = () => {
+    const location = useLocation();
+    let showForm;
+    if(location.pathname === '/lawyer/register'){
+        showForm = <Register />
+    }
+    else if(location.pathname === '/lawyer/login'){
+        showForm = <Login />
+    }
     return (
         <React.Fragment>
             <Container fluid>
@@ -46,7 +56,7 @@ const LawyerRegister = () => {
                     </Col>
                 </Row>
             </Container>
-            <Register />
+            {showForm}
             <Quote />
         </React.Fragment>
     );

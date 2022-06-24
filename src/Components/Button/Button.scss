@@ -1,12 +1,14 @@
+@import '../../color';
+
 .btn_style {
-  background-color: #1a9abb !important;
+  background-color: $button !important;
   color: #fff !important;
   font-weight: bold !important;
   border: none !important;
   padding: 8px 45px !important;
   border-radius: 20px !important;
   text-transform: uppercase !important;
-  box-shadow: rgb(9 157 195 / 50%) 0 2px 10px 0 !important;
+  box-shadow: $boxShadow !important;
   font-size: 12px !important;
   transition: all 0.5s ease !important;
 

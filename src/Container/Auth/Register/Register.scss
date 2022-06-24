@@ -1,14 +1,32 @@
-.registration_form{
+@import '../../../color';
+
+.registration_form, .login_form{
   width: 100%;
   max-width: 900px;
   margin: 30px auto;
-  box-shadow: rgb(9 157 195 / 16%) 0 6px 12px 0;
-  border-top: 8px solid #1a9abb;
+  box-shadow: $boxShadow;
+  border-top: 8px solid $button;
   border-radius: 10px;
   padding: 20px;
 
   h3{
     font-weight: bold;
     text-transform: uppercase;
+    padding: 10px 0;
   }
+
+  p{
+    text-align: center;
+    font-size: 14px;
+    margin: 15px 0 0;
+    color: $paragraph;
+
+    a{
+      color: $button;
+    }
+  }
+}
+
+.login_form{
+  max-width: 500px !important;
 }

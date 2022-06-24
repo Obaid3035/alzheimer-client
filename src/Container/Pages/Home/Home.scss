@@ -1,7 +1,9 @@
+@import '../../../color';
+
 .get_touch{
 
   h1{
-    color: #21556c;
+    color: $darkBlue;
     text-transform: uppercase;
     font-weight: 600;
     position: relative;
@@ -11,7 +13,7 @@
   p{
     font-size: 18px;
     span{
-      color: #21556c;
+      color: $darkBlue;
       font-weight: 500;
     }
   }
@@ -43,7 +45,7 @@
   flex-direction: column;
 
   p{
-    color: #464646;
+    color: $paragraph;
     font-size: 15px;
   }
 
@@ -53,7 +55,7 @@
   }
 
   h4{
-    color: #50afe4;
+    color: $button;
     padding-left: 55px;
     position: relative;
     font-size: 27px;
@@ -62,7 +64,7 @@
       content: "";
       width: 35px;
       height: 3px;
-      background-color: #50afe4;
+      background-color: $button;
       position: absolute;
       top: 14px;
       left: 5px;

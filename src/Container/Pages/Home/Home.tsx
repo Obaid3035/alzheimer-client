@@ -5,7 +5,7 @@ import HomeSection2 from "../../../Assets/home_section2.jpg";
 import Button from "../../../Components/Button/Button";
 import SearchLocation from "./SearchLocation/SearchLocation";
 import Quote from "../../../Components/Quote/Quote";
-import Testimonials from "../../../Components/Testimonials/Testimonials";
+import Testimonials from "./Testimonials/Testimonials";
 import './Home.scss';
 import {useNavigate} from "react-router-dom";
 
@@ -28,7 +28,6 @@ const Home = () => {
                                 </Button>
                             </div>
                         </div>
-
                         <SearchLocation />
                     </Col>
                     <Col md={5} className={'home_img'}>
@@ -75,7 +74,6 @@ const Home = () => {
             <Quote />
             <Testimonials />
         </React.Fragment>
-
     );
 };
 export default Home;

@@ -1,18 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './SearchLocation.scss';
 import Input from "../../../../Components/Input/Input";
 import {Form, Row, Col} from "react-bootstrap";
 import Button from "../../../../Components/Button/Button";
 import LocationIcon from '../../../../Assets/location_icon.png';
+import LocationInput from "../../../../Components/MapInput/MapInput";
+
+interface ICoordinates {
+    lat: number,
+    lng: number
+}
 
 const SearchLocation = () => {
+    const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
     return (
         <div className={'search_location'}>
             <Form>
                 <Row>
                     <Col md={8}>
                         <Input onSubmit={() => console.log('hello')}>
-                            <Form.Control type="text" placeholder='Enter your Location to Find Lawyer' />
+                            <LocationInput selectedCoordinates={selectedCoordinates}
+                                           setSelectedCoordinates={setSelectedCoordinates}/>
                         </Input>
                     </Col>
                     <Col md={3}>

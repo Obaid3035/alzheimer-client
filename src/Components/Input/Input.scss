@@ -1,8 +1,10 @@
+@import '../../color';
+
 .form_group{
 
-  .form-control {
+  .form-control, .css-yk16xz-control, .css-1pahdxg-control {
     background-color: #8080801c !important;
-    padding: 8px 10px !important;
+    padding: 8px 10px;
     border-radius: 20px !important;
     border: 1px solid #8080801c !important;
     width: 100% !important;
@@ -15,7 +17,7 @@
 
     &:focus-visible{
       outline: none !important;
-      border: 1px solid #1a9abb !important;
+      border: 1px solid $button !important;
     }
 
     &:focus{
@@ -29,4 +31,8 @@
     font-weight: 600;
     margin-top: 15px;
   }
+}
+
+.css-yk16xz-control, .css-1pahdxg-control{
+  padding: 0 10px !important;
 }

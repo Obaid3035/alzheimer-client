@@ -1,15 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Col, Container, Form, Row} from "react-bootstrap";
 import './Register.scss';
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
+import LocationInput from "../../../Components/MapInput/MapInput";
+import {NavLink, useLocation} from "react-router-dom";
+
+interface ICoordinates {
+    lat: number,
+    lng: number
+}
 
 const Register = () => {
+    const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
+    const location = useLocation();
+    let redirectUrl;
+    if(location.pathname === '/caregiver/register'){
+        redirectUrl =  <NavLink to={'/caregiver/login'}> Login </NavLink>
+    }
+    else if(location.pathname === '/lawyer/register'){
+        redirectUrl = <NavLink to={'/lawyer/login'}> Login </NavLink>
+    }
+
     return (
-        <React.Fragment>
             <Container>
                 <div className={'registration_form'}>
-                    <h3>Lawyer Registration</h3>
+                    <h3>Registration</h3>
                     <Form>
                         <Row>
                             <Col md={6}>
@@ -36,10 +52,24 @@ const Register = () => {
                                     <Form.Control type="text" placeholder='Enter Your ID' />
                                 </Input>
                             </Col>
+                            <Col md={6}>
+                                <Input onSubmit={() => console.log('hello')}>
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control type="password" placeholder='Enter Your Password' />
+                                </Input>
+                            </Col>
+                            <Col md={6}>
+                                <Input onSubmit={() => console.log('hello')}>
+                                    <Form.Label>Confirm Password</Form.Label>
+                                    <Form.Control type="password" placeholder='Enter Your confirm Password' />
+                                </Input>
+                            </Col>
                             <Col md={12}>
                                 <Input onSubmit={() => console.log('hello')}>
                                     <Form.Label>Location</Form.Label>
-                                    <Form.Control type="text" placeholder='Enter Your Location' />
+                                    {/*<Form.Control type="text" placeholder='Enter Your Location' />*/}
+                                    <LocationInput selectedCoordinates={selectedCoordinates}
+                                                   setSelectedCoordinates={setSelectedCoordinates}/>
                                 </Input>
                             </Col>
                             <Col md={4}>
@@ -47,16 +77,16 @@ const Register = () => {
                                     <Form.Control type="file" className={'mt-3'}/>
                                 </Input>
                             </Col>
-                            <Col md={12} className={'d-flex justify-content-end'}>
+                            <Col md={12} className={'d-flex justify-content-end mt-4'}>
                                 <Button type="submit" onClick={() => console.log('hello')}>
                                     Submit
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
+                    <p>Already have an account? {redirectUrl}</p>
                 </div>
             </Container>
-        </React.Fragment>
     );
 };
 export default Register;

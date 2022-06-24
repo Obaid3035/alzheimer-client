@@ -1,3 +1,5 @@
+@import '../../../../color';
+
 .testimonials_main{
   margin: 100px 0;
 
@@ -10,7 +12,7 @@
 
     &::before {
       content: '';
-      background-image: url('../../Assets/testimonial_comas.png');
+      background-image: url('../../../../Assets/testimonial_comas.png');
       background-repeat: no-repeat;
       background-size: contain;
       position: absolute;
@@ -49,7 +51,7 @@
   font-size: 30px;
   line-height: 1;
   opacity: .90;
-  color: #0e6b81 !important;
+  color: $button !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

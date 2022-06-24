@@ -5,8 +5,18 @@ import CareGiverRegister2 from "../../../../Assets/about_section3.jpg";
 import Register from "../../../Auth/Register/Register";
 import Quote from "../../../../Components/Quote/Quote";
 import '../../../Lawyer/Pages/Register/Register.scss';
+import {useLocation} from "react-router-dom";
+import Login from "../../../Auth/Login/Login";
 
 const CareGiverRegister = () => {
+    const location = useLocation();
+    let showForm;
+    if(location.pathname === '/caregiver/register'){
+        showForm = <Register />
+    }
+    else if(location.pathname === '/caregiver/login'){
+        showForm = <Login />
+    }
     return (
         <React.Fragment>
             <Container fluid>
@@ -58,7 +68,7 @@ const CareGiverRegister = () => {
                     <li>Build a stronger community around your family for support</li>
                 </ul>
             </Container>
-            <Register />
+            {showForm}
             <Quote />
         </React.Fragment>
     );

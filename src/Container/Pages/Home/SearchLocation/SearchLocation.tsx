@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import './SearchLocation.scss';
+import {useNavigate} from "react-router-dom";
 import Input from "../../../../Components/Input/Input";
 import {Form, Row, Col} from "react-bootstrap";
 import Button from "../../../../Components/Button/Button";
@@ -12,6 +13,12 @@ interface ICoordinates {
 }
 
 const SearchLocation = () => {
+    const navigate = useNavigate();
+
+    const SearchLawyer = () => {
+        navigate('/search')
+    }
+
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
     return (
         <div className={'search_location'}>
@@ -24,7 +31,7 @@ const SearchLocation = () => {
                         </Input>
                     </Col>
                     <Col md={3}>
-                        <Button type="submit" onClick={() => console.log('hello')}>
+                        <Button type="submit" onClick={SearchLawyer}>
                             Search
                         </Button>
                     </Col>

@@ -24,19 +24,18 @@ const SearchLocation = () => {
         <div className={'search_location'}>
             <Form>
                 <Row>
-                    <Col md={8}>
+                    <Col md={9}>
                         <Input onSubmit={() => console.log('hello')}>
                             <LocationInput selectedCoordinates={selectedCoordinates}
-                                           setSelectedCoordinates={setSelectedCoordinates}/>
+                                           setSelectedCoordinates={setSelectedCoordinates}
+                                           showMap={false}
+                            />
                         </Input>
                     </Col>
                     <Col md={3}>
                         <Button type="submit" onClick={SearchLawyer}>
                             Search
                         </Button>
-                    </Col>
-                    <Col md={1} className={'location_img'}>
-                        <img src={LocationIcon} alt={'location-icon'}/>
                     </Col>
                 </Row>
             </Form>

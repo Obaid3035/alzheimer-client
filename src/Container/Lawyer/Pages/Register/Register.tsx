@@ -12,7 +12,7 @@ const LawyerRegister = () => {
     const location = useLocation();
     let showForm;
     if(location.pathname === '/lawyer/register'){
-        showForm = <Register />
+        showForm = <Register loc={true} resume={true} name="Lawyer" />
     }
     else if(location.pathname === '/lawyer/login'){
         showForm = <Login />

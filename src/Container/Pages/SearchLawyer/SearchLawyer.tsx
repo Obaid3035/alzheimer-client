@@ -43,7 +43,7 @@ const SearchLawyer = () => {
                         <Col md={4}>
                             <div className={'lawyer_find'}>
                                 <Row>
-                                    <Col md={4}>
+                                    <Col md={4} className={'text-center'}>
                                         <img src={Lawyer1} alt={'Lawyer1'} className={'lawyer_img'} />
                                     </Col>
                                     <Col md={8}>

@@ -11,7 +11,13 @@ interface ICoordinates {
     lng: number
 }
 
-const Register = () => {
+interface IRegister{
+    loc: boolean,
+    resume: boolean,
+    name: string
+}
+
+const Register: React.FC<IRegister> = ({loc, resume, name}) => {
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
     const location = useLocation();
     let redirectUrl;
@@ -25,7 +31,7 @@ const Register = () => {
     return (
             <Container>
                 <div className={'registration_form'}>
-                    <h3>Registration</h3>
+                    <h3>{name} Registration</h3>
                     <Form>
                         <Row>
                             <Col md={6}>
@@ -65,17 +71,24 @@ const Register = () => {
                                 </Input>
                             </Col>
                             <Col md={12}>
-                                <Input onSubmit={() => console.log('hello')}>
-                                    <Form.Label>Location</Form.Label>
-                                    {/*<Form.Control type="text" placeholder='Enter Your Location' />*/}
-                                    <LocationInput selectedCoordinates={selectedCoordinates}
-                                                   setSelectedCoordinates={setSelectedCoordinates}/>
-                                </Input>
+                                {
+                                    loc ? <Input onSubmit={() => console.log('hello')}>
+                                        <Form.Label>Location</Form.Label>
+                                        <LocationInput selectedCoordinates={selectedCoordinates}
+                                                       setSelectedCoordinates={setSelectedCoordinates}
+                                                       showMap={true}
+                                        />
+                                    </Input>
+                                        : null
+                                }
                             </Col>
                             <Col md={4}>
-                                <Input onSubmit={() => console.log('hello')}>
-                                    <Form.Control type="file" className={'mt-3'}/>
-                                </Input>
+                                {
+                                    resume ? <Input onSubmit={() => console.log('hello')}>
+                                        <Form.Control type="file" className={'mt-3'}/>
+                                    </Input>
+                                        : null
+                                }
                             </Col>
                             <Col md={12} className={'d-flex justify-content-end mt-4'}>
                                 <Button type="submit" onClick={() => console.log('hello')}>

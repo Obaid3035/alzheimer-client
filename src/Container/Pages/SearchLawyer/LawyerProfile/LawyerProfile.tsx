@@ -30,7 +30,7 @@ const LawyerProfile = () => {
 
                     <div className={'lawyer_details'}>
                         <Row className={'align-items-center'}>
-                            <Col md={2}>
+                            <Col md={2} className={'text-center'}>
                                 <img src={Lawyer1} alt={'Lawyer_detail_img'} className={'Lawyer_detail_img'} />
                             </Col>
                             <Col md={7}>

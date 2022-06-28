@@ -12,7 +12,7 @@ const CareGiverRegister = () => {
     const location = useLocation();
     let showForm;
     if(location.pathname === '/caregiver/register'){
-        showForm = <Register />
+        showForm = <Register loc={false} resume={false} name="careGiver" />
     }
     else if(location.pathname === '/caregiver/login'){
         showForm = <Login />

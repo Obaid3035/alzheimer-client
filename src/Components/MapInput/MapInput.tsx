@@ -3,25 +3,7 @@ import {GoogleApiWrapper, Map, mapEventHandler, Marker} from "google-maps-react"
 import GooglePlacesAutocomplete, {geocodeByAddress, getLatLng} from "react-google-places-autocomplete";
 import LocationIcon from "../../Assets/location_icon.png";
 import './MapInput.scss';
-
-interface ICoordinates {
-    lat: number,
-    lng: number
-}
-
-interface IMapInputProps {
-    selectedCoordinates: ICoordinates | null,
-    setSelectedCoordinates: React.Dispatch<React.SetStateAction<null | ICoordinates>>,
-    google: any;
-}
-
-interface IMapInputProps {
-    selectedCoordinates: ICoordinates | null,
-    setSelectedCoordinates: React.Dispatch<React.SetStateAction<null | ICoordinates>>,
-    showMap: boolean
-    google: any;
-}
-
+import {ICoordinates, IMapInputProps} from '../../interfaces';
 
 const MapInput: React.FC<IMapInputProps> = ({setSelectedCoordinates, selectedCoordinates, google, showMap}) => {
     const [markerCoordinates, setMarkerCoordinates] = useState<ICoordinates | null>(null);
@@ -49,7 +31,6 @@ const MapInput: React.FC<IMapInputProps> = ({setSelectedCoordinates, selectedCoo
                     }
                 })
         });
-
     }
 
     const onPlaceSearch = (place: { label: string }) => {

@@ -1,32 +1,55 @@
-import React from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
+import React, {useEffect, useState} from 'react';
+import {Col, Form, Row} from "react-bootstrap";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink, useLocation, useNavigate} from "react-router-dom";
+import {RegisterType, USER_ROLE, LoginType} from "../../../interfaces";
+import {useForm} from "react-hook-form";
 
 const Login = () => {
     const location = useLocation();
-    let redirectUrl;
-    if(location.pathname === '/caregiver/login'){
-        redirectUrl =  <NavLink to={'/caregiver/register'}> Register </NavLink>
+    const navigate = useNavigate();
+
+    const [loginType, setLoginType] = useState('')
+    const {register, handleSubmit, setValue, formState: {errors}} = useForm<any>({});
+
+    useEffect(() => {
+        switch (location.pathname) {
+            case LoginType.caregiver:
+                setValue("role", USER_ROLE.CAREGIVER)
+                setLoginType(LoginType.caregiver)
+                break;
+            case LoginType.lawyer:
+                setValue("role", USER_ROLE.LAWYER)
+                setLoginType(LoginType.lawyer)
+                break;
+        }
+    }, [])
+
+    const toRegisterHandler = () => {
+        switch (loginType) {
+            case LoginType.caregiver:
+                navigate(RegisterType.caregiver)
+                break
+            case LoginType.lawyer:
+                navigate(RegisterType.lawyer)
+                break
+        }
     }
-    else if(location.pathname === '/lawyer/login'){
-        redirectUrl = <NavLink to={'/lawyer/register'}> Register </NavLink>
-    }
+
     return (
-        <Container>
             <div className={'login_form'}>
                 <h3>Login</h3>
                 <Form>
                     <Row>
                         <Col md={12}>
-                            <Input onSubmit={() => console.log('hello')}>
+                            <Input>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="text" placeholder='Enter Your Email Address' />
                             </Input>
                         </Col>
                         <Col md={12}>
-                            <Input onSubmit={() => console.log('hello')}>
+                            <Input>
                                 <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" placeholder='Enter Your Password' />
                             </Input>
@@ -40,9 +63,8 @@ const Login = () => {
                 </Form>
                 <p><NavLink to={'/forgot-password'}> Forgotten Password? </NavLink></p>
                 <p>or</p>
-                <p>Don't have an account? {redirectUrl}</p>
+                <p>Don't have an account? <button onClick={toRegisterHandler} className={'btn_login'}> Register </button></p>
             </div>
-        </Container>
     );
 };
 export default Login;

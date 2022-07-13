@@ -6,8 +6,9 @@ import EmailIcon from "../../Assets/email_icon.png";
 import LocationIcon from "../../Assets/location_icon2.png";
 import FbIcon from "../../Assets/fb_icon.png";
 import TwitterIcon from "../../Assets/twitter_icon.png";
-import InstaIcon from "../../Assets/instagram_icon.png";
-import './Footer.scss'
+import InstagramIcon from "../../Assets/instagram_icon.png";
+import './Footer.scss';
+
 const Footer = () => {
     return (
         <footer>
@@ -59,7 +60,7 @@ const Footer = () => {
 
                             <img src={FbIcon} alt={'fb_icon'}/>
                             <img src={TwitterIcon} alt={'fb_icon'}/>
-                            <img src={InstaIcon} alt={'fb_icon'}/>
+                            <img src={InstagramIcon} alt={'fb_icon'}/>
                         </div>
                     </Col>
                 </Row>

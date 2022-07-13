@@ -20,7 +20,7 @@ const Header = () => {
                         <NavLink to={'/'} className={'nav-link'}>Home</NavLink>
                         <NavLink to={'/about'} className={'nav-link'}>About The ALZ Nexus</NavLink>
                         <form style={{marginRight: '20px'}}>
-                           <Input onSubmit={() => console.log('hello')}>
+                           <Input>
                                <Form.Control type="text" placeholder='Search' />
                            </Input>
                         </form>

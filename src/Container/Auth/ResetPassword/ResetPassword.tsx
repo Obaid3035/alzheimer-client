@@ -11,13 +11,13 @@ const ResetPassword = () => {
                 <Form>
                     <Row>
                         <Col md={12}>
-                            <Input onSubmit={() => console.log('hello')}>
+                            <Input>
                                 <Form.Label>New Password</Form.Label>
                                 <Form.Control type="text" placeholder='Enter Your New Password' />
                             </Input>
                         </Col>
                         <Col md={12}>
-                            <Input onSubmit={() => console.log('hello')}>
+                            <Input>
                                 <Form.Label>Confirm Password</Form.Label>
                                 <Form.Control type="text" placeholder='Enter Your Confirm Password' />
                             </Input>

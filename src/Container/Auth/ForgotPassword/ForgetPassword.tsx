@@ -11,7 +11,7 @@ const ForgetPassword = () => {
                 <Form>
                     <Row>
                         <Col md={12}>
-                            <Input onSubmit={() => console.log('hello')}>
+                            <Input>
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control type="text" placeholder='Enter Your Email for verification Link' />
                             </Input>

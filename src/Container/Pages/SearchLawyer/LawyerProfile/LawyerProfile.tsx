@@ -3,14 +3,13 @@ import './LawyerProfile.scss';
 import {Col, Container, Row} from "react-bootstrap";
 import SearchLawyer1 from "../../../../Assets/search_main.png";
 import Quote from "../../../../Components/Quote/Quote";
-import locationImg from "../../../../Assets/location3.png";
 import Lawyer1 from "../../../../Assets/lawyer1.png";
 import locationIcon from "../../../../Assets/location_icon2.png";
 import Button from "../../../../Components/Button/Button";
 
 const LawyerProfile = () => {
     return (
-        <div>
+        <React.Fragment>
             <Container fluid>
                 <Row>
                     <Col md={5} className={'register_section1'}>
@@ -23,7 +22,6 @@ const LawyerProfile = () => {
                     </Col>
                 </Row>
             </Container>
-
             <Container>
                 <div className={'search_main'}>
                     <h3>PROFILE DETAIL</h3>
@@ -49,9 +47,8 @@ const LawyerProfile = () => {
                     </div>
                 </div>
             </Container>
-
             <Quote />
-        </div>
+        </React.Fragment>
     );
 };
 export default LawyerProfile;

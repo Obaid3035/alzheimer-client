@@ -4,13 +4,8 @@ import {useNavigate} from "react-router-dom";
 import Input from "../../../../Components/Input/Input";
 import {Form, Row, Col} from "react-bootstrap";
 import Button from "../../../../Components/Button/Button";
-import LocationIcon from '../../../../Assets/location_icon.png';
 import LocationInput from "../../../../Components/MapInput/MapInput";
-
-interface ICoordinates {
-    lat: number,
-    lng: number
-}
+import {ICoordinates} from "../../../../interfaces";
 
 const SearchLocation = () => {
     const navigate = useNavigate();
@@ -25,7 +20,7 @@ const SearchLocation = () => {
             <Form>
                 <Row>
                     <Col md={9}>
-                        <Input onSubmit={() => console.log('hello')}>
+                        <Input>
                             <LocationInput selectedCoordinates={selectedCoordinates}
                                            setSelectedCoordinates={setSelectedCoordinates}
                                            showMap={false}

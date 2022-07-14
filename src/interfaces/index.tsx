@@ -28,13 +28,6 @@ export interface IStarRating {
     // changeRating?: (rating: number) => void;
 }
 
-export interface IRegister{
-    loc: boolean,
-    resume: boolean,
-    name: string
-}
-
-
 // ----------------------------------- ENUM ------------------------------
 
 export enum RegisterType {

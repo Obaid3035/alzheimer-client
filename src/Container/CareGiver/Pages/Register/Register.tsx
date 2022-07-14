@@ -7,12 +7,13 @@ import Quote from "../../../../Components/Quote/Quote";
 import '../../../Lawyer/Pages/Register/Register.scss';
 import {useLocation} from "react-router-dom";
 import Login from "../../../Auth/Login/Login";
+import {USER_ROLE} from "../../../../interfaces";
 
 const CareGiverRegister = () => {
     const location = useLocation();
     let showForm;
     if(location.pathname === '/caregiver/register'){
-        showForm = <Register loc={false} resume={false} name="careGiver" />
+        showForm = <Register role={USER_ROLE.CAREGIVER} heading="careGiver" />
     }
     else if(location.pathname === '/caregiver/login'){
         showForm = <Login />

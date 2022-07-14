@@ -1,91 +1,103 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Col, Form, Row} from "react-bootstrap";
 import './Register.scss';
 import {authValidation} from "../../../lib/validation";
-import { useForm } from "react-hook-form";
+import {useForm} from "react-hook-form";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
 import LocationInput from "../../../Components/MapInput/MapInput";
-import {useLocation, useNavigate} from "react-router-dom";
-import {signUp} from "../../../api/auth";
-import {getToken, setToken} from "../../../util/helper";
-// @ts-ignore
-import FileBase64 from 'react-file-base64';
-import {ICoordinates, IRegister, RegisterType, USER_ROLE, LoginType} from "../../../interfaces";
+import { useNavigate} from "react-router-dom";
+import {ICoordinates, LoginType, USER_ROLE} from "../../../interfaces";
 
-const Register: React.FC<any> = ({loc, resume, name}) => {
-    const location = useLocation();
+interface IRegister {
+    role: USER_ROLE
+    heading: string
+}
+
+interface IRegisterInput {
+    email: string,
+    password: string
+    confirmPassword: string
+    name: string,
+    phoneNumber: string,
+    role: USER_ROLE,
+    location: {
+        lat: number,
+        lng: number
+    },
+    nic: string,
+    resume: File[],
+    isVerified: boolean
+}
+
+
+const Register: React.FC<IRegister> = ({role, heading}) => {
     const navigate = useNavigate();
 
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
-    const [registerType, setRegisterType] = useState('')
-    const [getResume, setGetResume] = useState(null)
 
-    const {register, handleSubmit, setValue, formState: {errors}} = useForm<any>({});
+    const {register, handleSubmit} = useForm<IRegisterInput>();
 
-    useEffect(() => {
-        switch (location.pathname) {
-            case RegisterType.caregiver:
-                setValue("role", USER_ROLE.CAREGIVER)
-                setRegisterType(RegisterType.caregiver)
-                break;
-            case RegisterType.lawyer:
-                setValue("role", USER_ROLE.LAWYER)
-                setRegisterType(RegisterType.lawyer)
-                break;
-        }
-    }, [])
 
     const toLogin = () => {
-        switch (registerType) {
-            case RegisterType.caregiver:
+        switch (role) {
+            case USER_ROLE.CAREGIVER:
                 navigate(LoginType.caregiver)
                 break;
-            case RegisterType.lawyer:
+            case USER_ROLE.LAWYER:
                 navigate(LoginType.lawyer)
                 break;
         }
     }
 
-    const getImg = (e: any) => {
-        setGetResume(e.base64)
+    const registerSubmit = handleSubmit((data => {
+        let userData = {
+            email: data.email,
+            password: data.password,
+            name: data.name,
+            phoneNumber: data.phoneNumber,
+            role: role,
+            location: {
+                lat: selectedCoordinates?.lat,
+                lng: selectedCoordinates?.lng
+            },
+            nic: data.nic,
+            resume: data.resume[0],
+            isVerified: false
+        }
+        console.log(userData)
+    }));
+
+    let additionalField = null;
+
+    if (role === USER_ROLE.LAWYER) {
+        additionalField = (
+            <React.Fragment>
+                <Col md={12}>
+                    <Input>
+                        <Form.Label>Location</Form.Label>
+                        <LocationInput selectedCoordinates={selectedCoordinates}
+                                       setSelectedCoordinates={setSelectedCoordinates}
+                                       showMap={true}
+                        />
+                    </Input>
+                </Col>
+                <Col md={4}>
+                    <Input>
+                        <Form.Control
+                            type="file"
+                            placeholder='Choose file'
+                            {...register("resume")}
+                        />
+                    </Input>
+                </Col>
+            </React.Fragment>
+        )
     }
-
-    const registerSubmit = handleSubmit((data) => {
-        if(data.role === USER_ROLE.LAWYER){
-            let userData = {
-                email: data.email,
-                password: data.password,
-                name: data.name,
-                phoneNumber: data.phoneNumber,
-                role: data.role,
-                location: {
-                    lat: selectedCoordinates?.lat,
-                    lng: selectedCoordinates?.lng
-                },
-                nic: data.nic,
-                // resume: getResume,
-                isVerified: false
-            }
-
-            signUp(userData)
-                .then((res) => {
-                    console.log('successful registered')
-                    setToken(res.data.token)
-                })
-        }
-        else{
-            signUp(data)
-                .then((res) => {
-                    console.log('successful registered')
-                    setToken(res.data.token)
-                })
-        }
-    });
 
     return (
         <div className={'registration_form'}>
-            <h3>{name} Registration</h3>
+            <h3>{heading} Registration</h3>
             <Form onSubmit={registerSubmit}>
                 <Row>
                     <Col md={6}>
@@ -136,29 +148,7 @@ const Register: React.FC<any> = ({loc, resume, name}) => {
                             />
                         </Input>
                     </Col>
-                    <Col md={12}>
-                        {
-                            loc ? <Input>
-                                    <Form.Label>Location</Form.Label>
-                                    <LocationInput selectedCoordinates={selectedCoordinates}
-                                                   setSelectedCoordinates={setSelectedCoordinates}
-                                                   showMap={true}
-                                    />
-                            </Input>
-                                : null
-                        }
-                    </Col>
-                    <Col md={4}>
-                        {
-                            resume ? <Input>
-                                    <FileBase64
-                                        multiple={ false }
-                                        onDone={ getImg }
-                                    />
-                            </Input>
-                                : null
-                        }
-                    </Col>
+                    {additionalField}
                     <Col md={12} className={'d-flex justify-content-end mt-4'}>
                         <Button type="submit" onClick={() => console.log('')}>
                             Submit

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Container, Row, Col} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import FooterLogo from "../../Assets/logo.png";
 import PhoneIcon from "../../Assets/phone_icon.png";
 import EmailIcon from "../../Assets/email_icon.png";
@@ -29,7 +30,7 @@ const Footer = () => {
                                 <li>Home</li>
                                 <li>About Us</li>
                                 <li>Terms and Condition</li>
-                                <li>Privacy Policy</li>
+                                <li> <Link to={'/privacy-policy'}> Privacy Policy </Link></li>
                                 <li>Contact Us</li>
                             </ul>
                         </div>

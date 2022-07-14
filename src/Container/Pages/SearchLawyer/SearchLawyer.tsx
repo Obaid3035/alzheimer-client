@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './SearchLawyer.scss';
 import {useNavigate} from "react-router-dom";
 import {Col, Container, Row} from "react-bootstrap";
@@ -8,9 +8,11 @@ import locationImg from "../../../Assets/location3.png";
 import locationIcon from '../../../Assets/location_icon2.png'
 import Lawyer1 from "../../../Assets/lawyer1.png";
 import Button from "../../../Components/Button/Button";
+import Pagination from "../../../Components/Pagination/Pagination";
 
 const SearchLawyer = () => {
     const navigate = useNavigate();
+    const [page, setPage] = useState(0);
 
     const lawyerDetail = () => {
         navigate('/lawyer-profile')
@@ -63,6 +65,8 @@ const SearchLawyer = () => {
                             </div>
                         </Col>
                     </Row>
+
+                    <Pagination page={page} setPage={setPage} totalPage={5} />
                 </div>
             </Container>
 

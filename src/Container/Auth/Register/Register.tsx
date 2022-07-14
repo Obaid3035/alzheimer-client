@@ -36,7 +36,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
 
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
 
-    const {register, handleSubmit} = useForm<IRegisterInput>();
+    const {register, handleSubmit, formState: {errors}} = useForm<IRegisterInput>();
 
 
     const toLogin = () => {
@@ -87,8 +87,9 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                         <Form.Control
                             type="file"
                             placeholder='Choose file'
-                            {...register("resume")}
+                            {...register("resume", authValidation.resume)}
                         />
+                        { errors.resume ? <small className={"text-danger"}>{errors.resume?.message}</small> : null }
                     </Input>
                 </Col>
             </React.Fragment>
@@ -106,6 +107,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="text" placeholder='Enter Your Name'
                                           {...register("name", authValidation.name)}
                             />
+                            { errors.name ? <small className={"text-danger"}>{errors.name?.message}</small> : null }
                         </Input>
                     </Col>
                     <Col md={6}>
@@ -114,6 +116,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="text" placeholder='Enter Your Email Address'
                                           {...register("email", authValidation.email)}
                             />
+                            { errors.email ? <small className={"text-danger"}>{errors.email?.message}</small> : null }
                         </Input>
                     </Col>
                     <Col md={6}>
@@ -122,6 +125,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="text" placeholder='Enter Your Phone Number'
                                           {...register("phoneNumber", authValidation.phone)}
                             />
+                            { errors.phoneNumber ? <small className={"text-danger"}>{errors.phoneNumber?.message}</small> : null }
                         </Input>
                     </Col>
                     <Col md={6}>
@@ -130,6 +134,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="text" placeholder='Enter Your ID'
                                           {...register("nic", authValidation.nic)}
                             />
+                            { errors.nic ? <small className={"text-danger"}>{errors.nic?.message}</small> : null }
                         </Input>
                     </Col>
                     <Col md={6}>
@@ -138,6 +143,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="password" placeholder='Enter Your Password'
                                           {...register("password", authValidation.password)}
                             />
+                            { errors.password ? <small className={"text-danger"}>{errors.password?.message}</small> : null }
                         </Input>
                     </Col>
                     <Col md={6}>
@@ -146,6 +152,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             <Form.Control type="password" placeholder='Enter Your confirm Password'
                                           {...register("confirmPassword", authValidation.password)}
                             />
+                            { errors.confirmPassword ? <small className={"text-danger"}>{errors.confirmPassword?.message}</small> : null }
                         </Input>
                     </Col>
                     {additionalField}

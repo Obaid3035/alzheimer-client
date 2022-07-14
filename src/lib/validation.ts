@@ -46,5 +46,11 @@ export const authValidation = {
             value: 8,
             message: "Password length must be greater than 7"
         }
+    },
+    resume: {
+        required: {
+            value: true,
+            message: "Resume cannot be empty"
+        }
     }
 }

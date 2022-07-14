@@ -11,27 +11,38 @@ import ForgetPassword from "./Container/Auth/ForgotPassword/ForgetPassword";
 import ResetPassword from "./Container/Auth/ResetPassword/ResetPassword";
 import SearchLawyer from "./Container/Pages/SearchLawyer/SearchLawyer";
 import LawyerProfile from "./Container/Pages/SearchLawyer/LawyerProfile/LawyerProfile";
+import PrivacyPolicy from "./Container/Pages/PrivacyPolicy/PrivacyPolicy";
 
 const App = () => {
     return (
         <Router>
             <Routes>
-                <Route path={'/'} element={<React.Fragment>
+                <Route path={'/'} element={
+                    <React.Fragment>
                         <Header />
                         <Home />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/about'} element={<React.Fragment>
+                <Route path={'/about'} element={
+                    <React.Fragment>
                         <Header />
                         <About />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/search'} element={<React.Fragment>
+                <Route path={'/search'} element={
+                    <React.Fragment>
                     <Header />
                     <SearchLawyer />
                     <Footer />
                 </React.Fragment>} />
-                <Route path={'/lawyer-profile'} element={<React.Fragment>
+                <Route path={'/privacy-policy'} element={
+                    <React.Fragment>
+                        <Header />
+                        <PrivacyPolicy />
+                        <Footer />
+                    </React.Fragment>} />
+                <Route path={'/lawyer-profile'} element={
+                    <React.Fragment>
                     <Header />
                     <LawyerProfile />
                     <Footer />

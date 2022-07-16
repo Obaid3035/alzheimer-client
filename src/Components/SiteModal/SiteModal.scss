@@ -1,17 +1,28 @@
+@import '../../color';
+
 .site_modal {
   .modal-content {
-    border-radius: 35px;
+    border-radius: 15px;
+    border-top: 10px solid $button;
   }
-  .modal_header {
-    justify-content: end !important;
-    svg {
-      font-size: 25px;
-      color: $primary;
-      cursor: pointer;
+}
 
-      :hover {
-        color: $hover;
-      }
-    }
+.modal-body{
+  text-align: center;
+  padding: 60px 0 !important;
+  border-radius: 20px !important;
+
+  p{
+    padding: 0 40px;
   }
+  h5{
+    margin-bottom: 20px;
+  }
+}
+
+.modal-dialog{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -13,3 +13,21 @@ body{
   margin: 0;
   box-sizing: border-box;
 }
+
+.Toastify{
+
+  .Toastify__toast-container{
+
+    .Toastify__toast{
+      border-top: 5px solid #1a9abb !important;
+      border-radius: 10px !important;
+
+      .Toastify__toast-body{
+
+        div{
+          color: #000 !important;
+        }
+      }
+    }
+  }
+}

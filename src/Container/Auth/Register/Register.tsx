@@ -6,8 +6,10 @@ import {useForm} from "react-hook-form";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
 import LocationInput from "../../../Components/MapInput/MapInput";
-import { useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {ICoordinates, LoginType, USER_ROLE} from "../../../interfaces";
+import RegisterPopUp from "../../Lawyer/Pages/Register/RegisterPopUp/RegisterPopUp";
+import {errorNotify, successNotify} from "../../../util/toast";
 
 interface IRegister {
     role: USER_ROLE
@@ -30,12 +32,11 @@ interface IRegisterInput {
     isVerified: boolean
 }
 
-
 const Register: React.FC<IRegister> = ({role, heading}) => {
     const navigate = useNavigate();
 
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
-
+    const [showModal, setShowModal] = useState(false)
     const {register, handleSubmit, formState: {errors}} = useForm<IRegisterInput>();
 
 
@@ -51,21 +52,54 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
     }
 
     const registerSubmit = handleSubmit((data => {
-        let userData = {
-            email: data.email,
-            password: data.password,
-            name: data.name,
-            phoneNumber: data.phoneNumber,
-            role: role,
-            location: {
-                lat: selectedCoordinates?.lat,
-                lng: selectedCoordinates?.lng
-            },
-            nic: data.nic,
-            resume: data.resume[0],
-            isVerified: false
+        if(role === USER_ROLE.LAWYER){
+            if(selectedCoordinates) {
+                if(data.password === data.confirmPassword){
+                    let userData = {
+                        email: data.email,
+                        password: data.password,
+                        name: data.name,
+                        phoneNumber: data.phoneNumber,
+                        role: role,
+                        location: {
+                            lat: selectedCoordinates?.lat,
+                            lng: selectedCoordinates?.lng
+                        },
+                        nic: data.nic,
+                        resume: data.resume[0],
+                        isVerified: false
+                    }
+                    if(userData){
+                        setShowModal(true)
+                    }
+                }
+                else{
+                    errorNotify("Passwords didn't match")
+                }
+            }
+            else{
+                errorNotify('Please Select Location')
+            }
         }
-        console.log(userData)
+        else{
+            if(data.password === data.confirmPassword){
+                let userData = {
+                        email: data.email,
+                        password: data.password,
+                        name: data.name,
+                        phoneNumber: data.phoneNumber,
+                        role: role,
+                        nic: data.nic,
+                    }
+                    if(userData){
+                        successNotify('Successfully Registered')
+                    }
+                }
+            else{
+                errorNotify("Passwords didn't match")
+            }
+        }
+
     }));
 
     let additionalField = null;
@@ -98,6 +132,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
 
     return (
         <div className={'registration_form'}>
+            <RegisterPopUp  show={showModal} setShow={setShowModal} />
             <h3>{heading} Registration</h3>
             <Form onSubmit={registerSubmit}>
                 <Row>

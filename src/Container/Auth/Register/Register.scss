@@ -35,4 +35,27 @@
 
 .login_form{
   max-width: 500px !important;
+
+  .error_msg{
+    width: 100%;
+    padding: 20px;
+    background-color: rgb(254 203 203);
+    border-radius: 10px;
+
+    p{
+      color: red;
+      margin: 0;
+      text-align: center;
+      font-size: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      svg{
+        font-size: 25px;
+        padding-right: 6px;
+      }
+    }
+
+  }
 }

@@ -9,15 +9,22 @@ import {ICoordinates} from "../../../../interfaces";
 
 const SearchLocation = () => {
     const navigate = useNavigate();
+    const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
+    const [locationError, setLocationError] = useState('')
 
-    const SearchLawyer = () => {
-        navigate('/search')
+    const LocationHandler = (e: any) => {
+        e.preventDefault();
+        if(selectedCoordinates){
+            navigate('/search')
+        }
+        else{
+            setLocationError('Please Enter Your Location')
+        }
     }
 
-    const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
     return (
         <div className={'search_location'}>
-            <Form>
+            <Form onSubmit={LocationHandler}>
                 <Row>
                     <Col md={9}>
                         <Input>
@@ -25,10 +32,11 @@ const SearchLocation = () => {
                                            setSelectedCoordinates={setSelectedCoordinates}
                                            showMap={false}
                             />
+                            { locationError ? <small className={'text-danger'}>{locationError}</small> : null }
                         </Input>
                     </Col>
                     <Col md={3}>
-                        <Button type="submit" onClick={SearchLawyer}>
+                        <Button type="submit" onClick={() => console.log("")}>
                             Search
                         </Button>
                     </Col>

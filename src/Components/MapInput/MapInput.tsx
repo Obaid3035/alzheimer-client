@@ -49,16 +49,16 @@ const MapInput: React.FC<IMapInputProps> = ({setSelectedCoordinates, selectedCoo
             );
     }
 
-    const onMapClickHandler: mapEventHandler = (IMapProps, _Map, mapCoordinates) => {
-        setSelectedCoordinates(null)
-        const {latLng} = mapCoordinates;
-        let coordinate = {
-            lat: latLng.lat(),
-            lng: latLng.lng()
-        }
-        setSelectedCoordinates(coordinate)
-        setMarkerCoordinates(coordinate)
-    }
+    // const onMapClickHandler: mapEventHandler = (IMapProps, _Map, mapCoordinates) => {
+    //     setSelectedCoordinates(null)
+    //     const {latLng} = mapCoordinates;
+    //     let coordinate = {
+    //         lat: latLng.lat(),
+    //         lng: latLng.lng()
+    //     }
+    //     setSelectedCoordinates(coordinate)
+    //     setMarkerCoordinates(coordinate)
+    // }
 
     let map = (
         <div className={'text-center mt-3'}>
@@ -86,7 +86,7 @@ const MapInput: React.FC<IMapInputProps> = ({setSelectedCoordinates, selectedCoo
 
     return (
         <React.Fragment>
-        <div className={"d-flex w-100 align-items-center mb-3"}>
+        <div className={"d-flex w-100 align-items-center"}>
             <div className={'w-100'}>
                 <GooglePlacesAutocomplete
                     apiKey={'AIzaSyAy5GKZXkhiHbt_J_MN__a2ylt9N6jlN3U'}

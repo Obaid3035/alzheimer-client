@@ -12,65 +12,80 @@ import ResetPassword from "./Container/Auth/ResetPassword/ResetPassword";
 import SearchLawyer from "./Container/Pages/SearchLawyer/SearchLawyer";
 import LawyerProfile from "./Container/Pages/SearchLawyer/LawyerProfile/LawyerProfile";
 import PrivacyPolicy from "./Container/Pages/PrivacyPolicy/PrivacyPolicy";
+import { ToastContainer, Slide } from 'react-toastify';
 
 const App = () => {
     return (
-        <Router>
-            <Routes>
-                <Route path={'/'} element={
-                    <React.Fragment>
-                        <Header />
-                        <Home />
-                        <Footer />
-                    </React.Fragment>} />
-                <Route path={'/about'} element={
-                    <React.Fragment>
-                        <Header />
-                        <About />
-                        <Footer />
-                    </React.Fragment>} />
-                <Route path={'/search'} element={
-                    <React.Fragment>
-                    <Header />
-                    <SearchLawyer />
-                    <Footer />
-                </React.Fragment>} />
-                <Route path={'/privacy-policy'} element={
-                    <React.Fragment>
-                        <Header />
-                        <PrivacyPolicy />
-                        <Footer />
-                    </React.Fragment>} />
-                <Route path={'/lawyer-profile'} element={
-                    <React.Fragment>
-                    <Header />
-                    <LawyerProfile />
-                    <Footer />
-                </React.Fragment>} />
-                <Route path={'/lawyer/register'} element={<React.Fragment>
+        <React.Fragment>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                transition={Slide}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
+            <Router>
+                <Routes>
+                    <Route path={'/'} element={
+                        <React.Fragment>
+                            <Header />
+                            <Home />
+                            <Footer />
+                        </React.Fragment>} />
+                    <Route path={'/about'} element={
+                        <React.Fragment>
+                            <Header />
+                            <About />
+                            <Footer />
+                        </React.Fragment>} />
+                    <Route path={'/search'} element={
+                        <React.Fragment>
+                            <Header />
+                            <SearchLawyer />
+                            <Footer />
+                        </React.Fragment>} />
+                    <Route path={'/privacy-policy'} element={
+                        <React.Fragment>
+                            <Header />
+                            <PrivacyPolicy />
+                            <Footer />
+                        </React.Fragment>} />
+                    <Route path={'/lawyer-profile'} element={
+                        <React.Fragment>
+                            <Header />
+                            <LawyerProfile />
+                            <Footer />
+                        </React.Fragment>} />
+                    <Route path={'/lawyer/register'} element={<React.Fragment>
                         <Header />
                         <LawyerAuth />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/caregiver/register'} element={<React.Fragment>
+                    <Route path={'/caregiver/register'} element={<React.Fragment>
                         <Header />
                         <CareAuth />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/lawyer/login'} element={<React.Fragment>
+                    <Route path={'/lawyer/login'} element={<React.Fragment>
                         <Header />
                         <LawyerAuth />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/caregiver/login'} element={<React.Fragment>
+                    <Route path={'/caregiver/login'} element={<React.Fragment>
                         <Header />
                         <CareAuth />
                         <Footer />
                     </React.Fragment>} />
-                <Route path={'/forgot-password'} element={<ForgetPassword />} />
-                <Route path={'/reset-password'} element={<ResetPassword />} />
-            </Routes>
-        </Router>
+                    <Route path={'/forgot-password'} element={<ForgetPassword />} />
+                    <Route path={'/reset-password'} element={<ResetPassword />} />
+                </Routes>
+            </Router>
+        </React.Fragment>
     );
 };
 export default App;

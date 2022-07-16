@@ -3,24 +3,31 @@ import {Col, Form, Row} from "react-bootstrap";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
 import {NavLink, useLocation, useNavigate} from "react-router-dom";
-import {RegisterType, USER_ROLE, LoginType} from "../../../interfaces";
+import {RegisterType, LoginType} from "../../../interfaces";
 import {useForm} from "react-hook-form";
+import {authValidation} from "../../../lib/validation";
+import { CgDanger } from 'react-icons/cg';
+
+interface ILoginInput {
+    email: string,
+    password: string,
+}
 
 const Login = () => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const [loginType, setLoginType] = useState('')
-    const {register, handleSubmit, setValue, formState: {errors}} = useForm<any>({});
+    const [loginType, setLoginType] = useState('');
+    const [errorMsg, setErrorMsg] = useState<any>(null);
+
+    const {register, handleSubmit, formState: {errors}} = useForm<ILoginInput>({});
 
     useEffect(() => {
         switch (location.pathname) {
             case LoginType.caregiver:
-                setValue("role", USER_ROLE.CAREGIVER)
                 setLoginType(LoginType.caregiver)
                 break;
             case LoginType.lawyer:
-                setValue("role", USER_ROLE.LAWYER)
                 setLoginType(LoginType.lawyer)
                 break;
         }
@@ -37,21 +44,45 @@ const Login = () => {
         }
     }
 
+    const loginHandler = handleSubmit(data => {
+        if(data.email === 'hamza@gmail.com' || data.password === '123456789'){
+            navigate('/')
+        }
+        else{
+            setErrorMsg('Email or Password is incorrect');
+        }
+    })
+
     return (
             <div className={'login_form'}>
                 <h3>Login</h3>
-                <Form>
+
+                {
+                    errorMsg ? (
+                        <div className={'error_msg'}>
+                            <p><CgDanger /> {errorMsg}</p>
+                        </div>
+                    )
+                        : null
+                }
+                <Form onSubmit={loginHandler}>
                     <Row>
                         <Col md={12}>
                             <Input>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type="text" placeholder='Enter Your Email Address' />
+                                <Form.Control type="text" placeholder='Enter Your Email Address'
+                                              {...register("email", authValidation.email)}
+                                />
+                                { errors.email ? <small className={"text-danger"}>{errors.email?.message}</small> : null }
                             </Input>
                         </Col>
                         <Col md={12}>
                             <Input>
                                 <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" placeholder='Enter Your Password' />
+                                <Form.Control type="password" placeholder='Enter Your Password'
+                                              {...register("password", authValidation.password)}
+                                />
+                                { errors.password ? <small className={"text-danger"}>{errors.password?.message}</small> : null }
                             </Input>
                         </Col>
                         <Col md={12} className={'d-flex justify-content-end mt-4'}>

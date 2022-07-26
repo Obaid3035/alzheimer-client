@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
-import {Col, Form, Row} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Col, Form, Row, Spinner } from "react-bootstrap";
 import './Register.scss';
-import {authValidation} from "../../../lib/validation";
-import {useForm} from "react-hook-form";
+import { authValidation } from "../../../lib/validation";
+import { useForm } from "react-hook-form";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
 import LocationInput from "../../../Components/MapInput/MapInput";
-import {useNavigate} from "react-router-dom";
-import {ICoordinates, LoginType, USER_ROLE} from "../../../interfaces";
+import { signUp } from "../../../api/auth";
+import { useNavigate } from "react-router-dom";
+import { ICoordinates, LoginType, USER_ROLE } from "../../../interfaces";
 import RegisterPopUp from "../../Lawyer/Pages/Register/RegisterPopUp/RegisterPopUp";
-import {errorNotify, successNotify} from "../../../util/toast";
+import { errorNotify, successNotify } from "../../../util/toast";
 
 interface IRegister {
     role: USER_ROLE
@@ -32,13 +33,13 @@ interface IRegisterInput {
     isVerified: boolean
 }
 
-const Register: React.FC<IRegister> = ({role, heading}) => {
+const Register: React.FC<IRegister> = ({ role, heading }) => {
     const navigate = useNavigate();
 
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
     const [showModal, setShowModal] = useState(false)
-    const {register, handleSubmit, formState: {errors}} = useForm<IRegisterInput>();
-
+    const { register, handleSubmit, formState: { errors } } = useForm<IRegisterInput>();
+    const [loading, setLoading] = useState(false)
 
     const toLogin = () => {
         switch (role) {
@@ -52,9 +53,16 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
     }
 
     const registerSubmit = handleSubmit((data => {
-        if(role === USER_ROLE.LAWYER){
-            if(selectedCoordinates) {
-                if(data.password === data.confirmPassword){
+        setLoading(true)
+
+        setTimeout(() => {
+            setLoading(false)
+            console.log(data)
+        }, 2000)
+
+        if (role === USER_ROLE.LAWYER) {
+            if (selectedCoordinates) {
+                if (data.password === data.confirmPassword) {
                     let userData = {
                         email: data.email,
                         password: data.password,
@@ -69,33 +77,34 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                         resume: data.resume[0],
                         isVerified: false
                     }
-                    if(userData){
+                    if (userData) {
                         setShowModal(true)
                     }
                 }
-                else{
+                else {
                     errorNotify("Passwords didn't match")
                 }
             }
-            else{
+            else {
                 errorNotify('Please Select Location')
             }
         }
-        else{
-            if(data.password === data.confirmPassword){
+        else {
+            if (data.password === data.confirmPassword) {
                 let userData = {
-                        email: data.email,
-                        password: data.password,
-                        name: data.name,
-                        phoneNumber: data.phoneNumber,
-                        role: role,
-                        nic: data.nic,
-                    }
-                    if(userData){
-                        successNotify('Successfully Registered')
-                    }
+                    email: data.email,
+                    password: data.password,
+                    name: data.name,
+                    phoneNumber: data.phoneNumber,
+                    role: role,
+                    nic: data.nic,
                 }
-            else{
+                signUp(userData)
+                    .then(() => {
+                        successNotify('Successfully Registered')
+                    })
+            }
+            else {
                 errorNotify("Passwords didn't match")
             }
         }
@@ -111,8 +120,8 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                     <Input>
                         <Form.Label>Location</Form.Label>
                         <LocationInput selectedCoordinates={selectedCoordinates}
-                                       setSelectedCoordinates={setSelectedCoordinates}
-                                       showMap={true}
+                            setSelectedCoordinates={setSelectedCoordinates}
+                            showMap={true}
                         />
                     </Input>
                 </Col>
@@ -123,7 +132,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                             placeholder='Choose file'
                             {...register("resume", authValidation.resume)}
                         />
-                        { errors.resume ? <small className={"text-danger"}>{errors.resume?.message}</small> : null }
+                        {errors.resume ? <small className={"text-danger"}>{errors.resume?.message}</small> : null}
                     </Input>
                 </Col>
             </React.Fragment>
@@ -132,7 +141,7 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
 
     return (
         <div className={'registration_form'}>
-            <RegisterPopUp  show={showModal} setShow={setShowModal} />
+            <RegisterPopUp show={showModal} setShow={setShowModal} />
             <h3>{heading} Registration</h3>
             <Form onSubmit={registerSubmit}>
                 <Row>
@@ -140,60 +149,60 @@ const Register: React.FC<IRegister> = ({role, heading}) => {
                         <Input>
                             <Form.Label>Name</Form.Label>
                             <Form.Control type="text" placeholder='Enter Your Name'
-                                          {...register("name", authValidation.name)}
+                                {...register("name", authValidation.name)}
                             />
-                            { errors.name ? <small className={"text-danger"}>{errors.name?.message}</small> : null }
+                            {errors.name ? <small className={"text-danger"}>{errors.name?.message}</small> : null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input>
                             <Form.Label>Email</Form.Label>
                             <Form.Control type="text" placeholder='Enter Your Email Address'
-                                          {...register("email", authValidation.email)}
+                                {...register("email", authValidation.email)}
                             />
-                            { errors.email ? <small className={"text-danger"}>{errors.email?.message}</small> : null }
+                            {errors.email ? <small className={"text-danger"}>{errors.email?.message}</small> : null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input>
                             <Form.Label>phone number</Form.Label>
                             <Form.Control type="text" placeholder='Enter Your Phone Number'
-                                          {...register("phoneNumber", authValidation.phone)}
+                                {...register("phoneNumber", authValidation.phone)}
                             />
-                            { errors.phoneNumber ? <small className={"text-danger"}>{errors.phoneNumber?.message}</small> : null }
+                            {errors.phoneNumber ? <small className={"text-danger"}>{errors.phoneNumber?.message}</small> : null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input>
                             <Form.Label>id number</Form.Label>
                             <Form.Control type="text" placeholder='Enter Your ID'
-                                          {...register("nic", authValidation.nic)}
+                                {...register("nic", authValidation.nic)}
                             />
-                            { errors.nic ? <small className={"text-danger"}>{errors.nic?.message}</small> : null }
+                            {errors.nic ? <small className={"text-danger"}>{errors.nic?.message}</small> : null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input>
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" placeholder='Enter Your Password'
-                                          {...register("password", authValidation.password)}
+                                {...register("password", authValidation.password)}
                             />
-                            { errors.password ? <small className={"text-danger"}>{errors.password?.message}</small> : null }
+                            {errors.password ? <small className={"text-danger"}>{errors.password?.message}</small> : null}
                         </Input>
                     </Col>
                     <Col md={6}>
                         <Input>
                             <Form.Label>Confirm Password</Form.Label>
                             <Form.Control type="password" placeholder='Enter Your confirm Password'
-                                          {...register("confirmPassword", authValidation.password)}
+                                {...register("confirmPassword", authValidation.password)}
                             />
-                            { errors.confirmPassword ? <small className={"text-danger"}>{errors.confirmPassword?.message}</small> : null }
+                            {errors.confirmPassword ? <small className={"text-danger"}>{errors.confirmPassword?.message}</small> : null}
                         </Input>
                     </Col>
                     {additionalField}
                     <Col md={12} className={'d-flex justify-content-end mt-4'}>
-                        <Button type="submit" onClick={() => console.log('')}>
-                            Submit
+                        <Button type="submit" >
+                            {loading ? <Spinner animation="border" size="sm" /> : "Submit"}
                         </Button>
                     </Col>
                 </Row>

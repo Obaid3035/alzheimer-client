@@ -13,8 +13,25 @@ import SearchLawyer from "./Container/Pages/SearchLawyer/SearchLawyer";
 import LawyerProfile from "./Container/Pages/SearchLawyer/LawyerProfile/LawyerProfile";
 import PrivacyPolicy from "./Container/Pages/PrivacyPolicy/PrivacyPolicy";
 import { ToastContainer, Slide } from 'react-toastify';
+import EditProfile from "./Components/EditProfile/EditProfile";
+import Reviews from "./Container/Pages/SearchLawyer/LawyerProfile/Reviews/Reviews";
+import Login from "./Container/Admin/Pages/Login/Login";
+import AdminNavbar from "./Container/Admin/Navbar/Navbar";
+import { adminRoutes } from './Container/Admin/Navbar/Routes';
 
 const App = () => {
+
+    const adminLayout = (
+        adminRoutes.map((item, index) => (
+            <Route key={index} path={item.path} element={
+                <React.Fragment>
+                    <AdminNavbar />
+                    {item.component}
+                </React.Fragment>
+            } />
+        ))
+    )
+
     return (
         <React.Fragment>
             <ToastContainer
@@ -31,6 +48,7 @@ const App = () => {
             />
             <Router>
                 <Routes>
+                    {adminLayout}
                     <Route path={'/'} element={
                         <React.Fragment>
                             <Header />
@@ -55,7 +73,7 @@ const App = () => {
                             <PrivacyPolicy />
                             <Footer />
                         </React.Fragment>} />
-                    <Route path={'/lawyer-profile'} element={
+                    <Route path={'/lawyer-profile/:id'} element={
                         <React.Fragment>
                             <Header />
                             <LawyerProfile />
@@ -79,6 +97,21 @@ const App = () => {
                     <Route path={'/caregiver/login'} element={<React.Fragment>
                         <Header />
                         <CareAuth />
+                        <Footer />
+                    </React.Fragment>} />
+                    <Route path={'/admin/login'} element={<React.Fragment>
+                        <Header />
+                        <Login />
+                        <Footer />
+                    </React.Fragment>} />
+                    <Route path={'/edit-profile'} element={<React.Fragment>
+                        <Header />
+                        <EditProfile />
+                        <Footer />
+                    </React.Fragment>} />
+                    <Route path={'/reviews'} element={<React.Fragment>
+                        <Header />
+                        <Reviews />
                         <Footer />
                     </React.Fragment>} />
                     <Route path={'/forgot-password'} element={<ForgetPassword />} />

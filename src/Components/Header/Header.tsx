@@ -54,7 +54,7 @@ const Header = () => {
 
     let authenticateUser;
 
-    if(getToken()){
+    if(!getToken()){
         authenticateUser = (
             <React.Fragment>
                 <Nav.Link className={'notify_item'}>

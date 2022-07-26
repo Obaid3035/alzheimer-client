@@ -1,7 +1,12 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 import "./Button.scss";
-import {IButton} from "../../interfaces";
+
+interface IButton {
+    children: any;
+    type: string
+    onClick?: () => void
+}
 
 const button:React.FC<IButton> = (props: any) => {
     return (

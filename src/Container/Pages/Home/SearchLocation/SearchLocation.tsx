@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './SearchLocation.scss';
 import {useNavigate} from "react-router-dom";
 import Input from "../../../../Components/Input/Input";
-import {Form, Row, Col} from "react-bootstrap";
+import {Form, Row, Col, Spinner} from "react-bootstrap";
 import Button from "../../../../Components/Button/Button";
 import LocationInput from "../../../../Components/MapInput/MapInput";
 import {ICoordinates} from "../../../../interfaces";
@@ -10,16 +10,23 @@ import {ICoordinates} from "../../../../interfaces";
 const SearchLocation = () => {
     const navigate = useNavigate();
     const [selectedCoordinates, setSelectedCoordinates] = useState<ICoordinates | null>(null)
+    const [loading, setLoading] = useState(false)
     const [locationError, setLocationError] = useState('')
 
     const LocationHandler = (e: any) => {
         e.preventDefault();
-        if(selectedCoordinates){
-            navigate('/search')
-        }
-        else{
-            setLocationError('Please Enter Your Location')
-        }
+        setLoading(true)
+
+        setTimeout(() => {
+            if(selectedCoordinates){
+                setLoading(false)
+                navigate('/search')
+            }
+            else{
+                setLoading(false)
+                setLocationError('Please Enter Your Location')
+            }
+        }, 2000)
     }
 
     return (
@@ -36,8 +43,10 @@ const SearchLocation = () => {
                         </Input>
                     </Col>
                     <Col md={3}>
-                        <Button type="submit" onClick={() => console.log("")}>
-                            Search
+                        <Button type="submit">
+                            {
+                                loading ? <Spinner animation="border" size="sm" /> : 'Search'
+                            }
                         </Button>
                     </Col>
                 </Row>

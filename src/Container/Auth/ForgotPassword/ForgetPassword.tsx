@@ -1,5 +1,5 @@
-import React from 'react';
-import {Col, Container, Form, Row} from "react-bootstrap";
+import React,{useState} from 'react';
+import {Col, Container, Form, Row,Spinner} from "react-bootstrap";
 import Input from "../../../Components/Input/Input";
 import Button from "../../../Components/Button/Button";
 import {authValidation} from "../../../lib/validation";
@@ -12,9 +12,15 @@ interface IForgetPassword{
 const ForgetPassword = () => {
 
     const {register, handleSubmit, formState: {errors}} = useForm<IForgetPassword>();
+    const [loading, setLoading] = useState(false)
 
     const FormHandler = handleSubmit(data => {
-        console.log(data)
+        setLoading(true)
+
+        setTimeout(() => {
+            setLoading(false)
+            console.log(data)
+        }, 2000)
     })
 
     return (
@@ -33,8 +39,8 @@ const ForgetPassword = () => {
                             </Input>
                         </Col>
                         <Col md={12} className={'d-flex justify-content-end mt-4'}>
-                            <Button type="submit" onClick={() => console.log('')}>
-                                Reset
+                            <Button type="submit" >
+                            {loading ? <Spinner animation="border" size="sm" /> : "Reset"}
                             </Button>
                         </Col>
                     </Row>

@@ -1,14 +1,7 @@
 import React from "react";
 
-export interface IButton {
-    children: any;
-    type: string
-    onClick: () => void
-}
-
 export interface IInput {
     children: any;
-    // onSubmit: () => void
 }
 
 export interface ICoordinates {
@@ -21,11 +14,6 @@ export interface IMapInputProps {
     setSelectedCoordinates: React.Dispatch<React.SetStateAction<null | ICoordinates>>,
     showMap: boolean
     google: any;
-}
-
-export interface IStarRating {
-    rating?: number;
-    // changeRating?: (rating: number) => void;
 }
 
 // ----------------------------------- ENUM ------------------------------
@@ -43,4 +31,31 @@ export enum LoginType {
 export enum USER_ROLE {
     CAREGIVER = "caregiver",
     LAWYER = "lawyer"
+}
+
+// Sidebar Interface
+
+export interface ISideBarRoutes {
+    icon: JSX.Element,
+    path?: string,
+    title: string,
+    isSubNav?: boolean,
+}
+
+// Admin Panel Interface
+
+export interface IRoutesLink {
+    component: JSX.Element,
+    path: string,
+}
+
+export interface ISideBarRoutes {
+    icon: JSX.Element,
+    path?: string,
+    title: string,
+    isSubNav?: boolean,
+    subNav?: {
+        path: string,
+        title: string
+    }[]
 }

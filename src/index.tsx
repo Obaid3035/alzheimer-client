@@ -4,6 +4,7 @@ import App from './App';
 import axios from "axios";
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 axios.defaults.baseURL = 'http://localhost:4000/';
 

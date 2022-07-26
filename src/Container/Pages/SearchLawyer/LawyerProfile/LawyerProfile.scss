@@ -22,6 +22,21 @@
     margin-right: 5px;
   }
 
+  .ratings{
+    display: flex;
+    align-items: center;
+
+    p{
+      margin-bottom: 0;
+      font-size: 14px;
+      color: $darkBlue;
+      margin-left: 15px;
+      font-weight: 600;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+  }
+
   p{
     margin-top: 10px;
     color: $paragraph;

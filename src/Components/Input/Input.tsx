@@ -5,7 +5,6 @@ import {IInput} from "../../interfaces";
 
 const Input:React.FC<IInput> = (props) => {
     return (
-        // onSubmit={props.onSubmit}
         <Form.Group className={'form_group'}>
             {props.children}
         </Form.Group>

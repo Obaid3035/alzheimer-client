@@ -16,7 +16,7 @@ const NavProfileBox = (props: { extraClasses: string }) => {
     return (
         <div className={`profile_dropdown ${props.extraClasses}`}>
             <div>
-                <div className={'profile_dropdown_item'} onClick={() => navigation('/profile')}>
+                <div className={'profile_dropdown_item'} onClick={() => navigation('/edit-profile')}>
                     <CgIcon.CgProfile />
                     <p>Profile</p>
                 </div>

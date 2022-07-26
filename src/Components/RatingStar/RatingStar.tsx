@@ -1,6 +1,10 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
-import {IStarRating} from '../../interfaces';
+
+interface IStarRating {
+    rating: number;
+    changeRating?: (rating: number) => void;
+}
 
 const RatingStar:React.FC<IStarRating> = (props) => {
     return (
@@ -11,7 +15,7 @@ const RatingStar:React.FC<IStarRating> = (props) => {
             starHoverColor="#ffb21e"
             starDimension="20px"
             starSpacing="3px"
-            // changeRating={this.changeRating}
+            changeRating={props.changeRating}
             numberOfStars={5}
         />
     );
